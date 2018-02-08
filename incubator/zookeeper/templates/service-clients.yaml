@@ -7,9 +7,15 @@ metadata:
     chart: "{{ .Chart.Name }}-{{ .Chart.Version }}"
     release: {{ .Release.Name | quote }}
     heritage: {{ .Release.Service | quote }}
+  {{ if .Values.client.internalDnsName }}
+  annotations:
+    dns.alpha.kubernetes.io/internal: {{ .Values.client.internalDnsName }}
+    service.beta.kubernetesion.io/aws-load-balancer-internal: {{ .Values.client.awsLoadBalancerInternal }}
+  {{ end }}
 spec:
+  {{ if .Values.client.internalDnsName  }}type: "LoadBalancer"{{ else }}type: {{ .Values.client.type }} {{ end }}
   ports:
-  - port: {{ .Values.clientPort }}
+  - port: {{ .Values.client.port }}
     name: client
   selector:
     app: {{ include "zookeeper.name" . | quote }}

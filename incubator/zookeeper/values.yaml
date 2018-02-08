@@ -18,7 +18,11 @@ storage: "50Gi"
 # storageClass: default
 serverPort: 2888
 leaderElectionPort: 3888
-clientPort: 2181
+client:
+  port: 2181
+  type: ClusterIp
+  # internalDnsName: zookeeper.internal
+  awsLoadBalancerInternal: 0.0.0.0/0
 imagePullPolicy: "Always"
 tickTimeMs: 2000
 initTicks: 10
