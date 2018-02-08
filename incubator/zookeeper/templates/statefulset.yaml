@@ -40,7 +40,7 @@ spec:
         resources:
 {{ toYaml .Values.resources | indent 10 }}
         ports:
-        - containerPort: {{ .Values.clientPort }}
+        - containerPort: {{ .Values.client.port }}
           name: client
         - containerPort: {{ .Values.serverPort }}
           name: server
@@ -66,7 +66,7 @@ spec:
         - name: ZK_LOG_LEVEL
           value: {{ .Values.logLevel }}
         - name: ZK_CLIENT_PORT
-          value: "{{ .Values.clientPort }}"
+          value: "{{ .Values.client.port }}"
         - name: ZK_SERVER_PORT
           value: "{{ .Values.serverPort }}"
         - name: ZK_ELECTION_PORT
