@@ -37,6 +37,6 @@ entries:
     - https://github.com/apache/zookeeper
     - https://github.com/kubernetes/contrib/tree/master/statefulset/zookeeper
     urls:
-    - zookeeper-0.5.0.tgz
+    - charts/docs/zookeeper-0.5.0.tgz
     version: 0.5.0
 generated: 2018-02-08T16:46:40.847665744-05:00
