@@ -11,6 +11,10 @@ metadata:
     chart: "{{ .Chart.Name }}-{{ .Chart.Version }}"
     release: "{{ .Release.Name }}"
     heritage: "{{ .Release.Service }}"
+  {{ if .Values.proxy.externalDnsName }}
+  annotations:
+    dns.alpha.kubernetes.io/external: {{ .Values.proxy.externalDnsName }}
+  {{ end }}
 spec:
   type: {{ .Values.proxy.type }}
   {{- if and (eq .Values.proxy.type "LoadBalancer") .Values.proxy.loadBalancerIP }}
