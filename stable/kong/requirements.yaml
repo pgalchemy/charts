@@ -4,6 +4,6 @@ dependencies:
   repository: https://pgalchemy.github.io/charts/
   condition: postgresql.enabled
 - name: cassandra
-  version: ~0.1.0
+  version: ~0.2.1
   repository: https://pgalchemy.github.io/charts/
   condition: cassandra.enabled

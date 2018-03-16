@@ -7,6 +7,11 @@ metadata:
     chart: "{{ .Chart.Name }}-{{ .Chart.Version }}"
     release: "{{ .Release.Name }}"
     heritage: "{{ .Release.Service }}"
+  {{ if .Values.admin.internalDnsName }}
+  annotations:
+    dns.alpha.kubernetes.io/internal: {{ .Values.admin.internalDnsName }}
+    service.beta.kubernetes.io/aws-load-balancer-internal: {{ .Values.admin.awsLoadBalancerInternal }}
+  {{ end }}
 spec:
   type: {{ .Values.admin.type }}
   {{- if and (eq .Values.admin.type "LoadBalancer") .Values.admin.loadBalancerIP }}
