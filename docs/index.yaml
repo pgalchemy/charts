@@ -1,7 +1,7 @@
 apiVersion: v1
 entries:
   cassandra:
-  - created: 2018-03-19T14:16:14.474329458-04:00
+  - created: 2018-03-19T14:50:03.490131983-04:00
     description: Apache Cassandra is a free and open-source distributed database management
       system designed to handle large amounts of data across many commodity servers,
       providing high availability with no single point of failure.
@@ -21,7 +21,7 @@ entries:
     - https://pgalchemy.github.io/charts/cassandra-0.2.1.tgz
     version: 0.2.1
   grafana:
-  - created: 2018-03-19T14:16:14.47498594-04:00
+  - created: 2018-03-19T14:50:03.490791795-04:00
     description: The leading tool for querying and visualizing time series and metrics.
     digest: c404e73e88cd3aa20635b334b9f9df785bb644c80171691ea4bf95502a256686
     engine: gotpl
@@ -38,8 +38,26 @@ entries:
     version: 0.6.1
   kong:
   - apiVersion: v1
+    appVersion: 0.12.2
+    created: 2018-03-19T14:50:03.495890733-04:00
+    description: Kong is open-source API Gateway and Microservices Management Layer,
+      delivering high performance and reliability.
+    digest: 5d99575563eb15d62f955c818efcc18e3d1293b7f21d79d7624a1cfb59342718
+    engine: gotpl
+    home: https://getkong.org/
+    icon: https://s3.amazonaws.com/downloads.kong/universe/assets/icon-kong-inc-large.png
+    maintainers:
+    - email: shashi@konghq.com
+      name: shashiranjan84
+    name: kong
+    sources:
+    - https://github.com/Kong/kong
+    urls:
+    - https://pgalchemy.github.io/charts/kong-0.2.0.tgz
+    version: 0.2.0
+  - apiVersion: v1
     appVersion: 0.12.1
-    created: 2018-03-19T14:16:14.478543963-04:00
+    created: 2018-03-19T14:50:03.494598734-04:00
     description: Kong is open-source API Gateway and Microservices Management Layer,
       delivering high performance and reliability.
     digest: bb53bf04fb9d83da18290dad317321b6983e8b7f2ffa1ea4a6c7a13e5d08b612
@@ -57,7 +75,7 @@ entries:
     version: 0.1.2
   - apiVersion: v1
     appVersion: 0.12.1
-    created: 2018-03-19T14:16:14.477284132-04:00
+    created: 2018-03-19T14:50:03.49330364-04:00
     description: Kong is open-source API Gateway and Microservices Management Layer,
       delivering high performance and reliability.
     digest: 813293bc1bd4385d7afaad438ca8d9be5bd9f4ae08469cf27ec103185fd68ba6
@@ -75,7 +93,7 @@ entries:
     version: 0.1.1
   - apiVersion: v1
     appVersion: 0.12.1
-    created: 2018-03-19T14:16:14.476233345-04:00
+    created: 2018-03-19T14:50:03.49200471-04:00
     description: Kong is open-source API Gateway and Microservices Management Layer,
       delivering high performance and reliability.
     digest: 97cdd8c445f2a4bea6ff7078ad84b9b26b855fb30be7a4fbe74a71768cb30e4a
@@ -92,7 +110,7 @@ entries:
     - https://pgalchemy.github.io/charts/kong-0.1.0.tgz
     version: 0.1.0
   postgresql:
-  - created: 2018-03-19T14:16:14.479065362-04:00
+  - created: 2018-03-19T14:50:03.496404722-04:00
     description: Object-relational database management system (ORDBMS) with an emphasis
       on extensibility and on standards-compliance.
     digest: 96627fe5441e6ff6d990715aaca5233ba695b042c9f9bf174cbaa86f63efa8e5
@@ -115,7 +133,7 @@ entries:
     - https://pgalchemy.github.io/charts/postgresql-0.8.10.tgz
     version: 0.8.10
   zookeeper:
-  - created: 2018-03-19T14:16:14.479613995-04:00
+  - created: 2018-03-19T14:50:03.496899589-04:00
     description: Centralized service for maintaining configuration information, naming,
       providing distributed synchronization, and providing group services.
     digest: a2d540f792a31377b38a12803d7efa9eef4ad7f36feaff58c9ee00d0dadd3952
@@ -133,4 +151,4 @@ entries:
     urls:
     - https://pgalchemy.github.io/charts/zookeeper-0.5.0.tgz
     version: 0.5.0
-generated: 2018-03-19T14:16:14.473614355-04:00
+generated: 2018-03-19T14:50:03.489555296-04:00
