@@ -18,6 +18,7 @@ metadata:
     {{ if .Values.admin.awsLoadBalancerSSLCert }}
     service.beta.kubernetes.io/aws-load-balancer-ssl-cert: {{ .Values.admin.awsLoadBalancerSSLCert }}
     {{ end }}
+  {{ end }}
 spec:
   type: {{ .Values.admin.type }}
   {{- if and (eq .Values.admin.type "LoadBalancer") .Values.admin.loadBalancerIP }}
