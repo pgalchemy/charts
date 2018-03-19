@@ -14,6 +14,9 @@ metadata:
   {{ if .Values.proxy.externalDnsName }}
   annotations:
     dns.alpha.kubernetes.io/external: {{ .Values.proxy.externalDnsName }}
+    {{ if .Values.proxy.awsLoadBalancerSSLCert }}
+    service.beta.kubernetes.io/aws-load-balancer-ssl-cert: {{ .Values.proxy.awsLoadBalancerSSLCert }}
+    {{ end }}
   {{ end }}
 spec:
   type: {{ .Values.proxy.type }}
