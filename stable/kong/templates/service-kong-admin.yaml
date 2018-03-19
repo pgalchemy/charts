@@ -15,7 +15,9 @@ metadata:
   annotations:
     dns.alpha.kubernetes.io/internal: {{ .Values.admin.internalDnsName }}
     service.beta.kubernetes.io/aws-load-balancer-internal: {{ .Values.admin.awsLoadBalancerInternal }}
-  {{ end }}
+    {{ if .Values.admin.awsLoadBalancerSSLCert }}
+    service.beta.kubernetes.io/aws-load-balancer-ssl-cert: {{ .Values.admin.awsLoadBalancerSSLCert }}
+    {{ end }}
 spec:
   type: {{ .Values.admin.type }}
   {{- if and (eq .Values.admin.type "LoadBalancer") .Values.admin.loadBalancerIP }}
