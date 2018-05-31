@@ -1,0 +1,28 @@
+apiVersion: v1
+kind: Service
+metadata:
+{{- if .Values.kong.service.annotations }}
+  annotations:
+{{ toYaml .Values.kong.service.annotations | indent 4 }}
+{{- end }}
+  labels:
+{{- if .Values.kong.service.labels }}
+{{ toYaml .Values.kong.service.labels | indent 4 }}
+{{- end }}
+    app: {{ template "kong-ingress.name" . }}
+    chart: {{ .Chart.Name }}-{{ .Chart.Version }}
+    component: "{{ .Values.kong.name }}"
+    heritage: {{ .Release.Service }}
+    release: {{ .Release.Name }}
+  name: {{ template "kong-ingress.kong.fullname" . }}
+spec:
+  type: "{{ .Values.kong.service.type }}"
+  ports:
+  - name: kong-admin
+    port: {{ .Values.kong.service.port }}
+    targetPort: {{ .Values.kong.service.port }}
+    protocol: TCP
+  selector:
+    app: {{ template "kong-ingress.name" . }}
+    component: "{{ .Values.kong.name }}"
+    release: {{ .Release.Name }}
