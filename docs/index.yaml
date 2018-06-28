@@ -1,7 +1,7 @@
 apiVersion: v1
 entries:
   cassandra:
-  - created: 2018-04-19T20:19:02.820860442-04:00
+  - created: 2018-06-28T17:13:22.732366243-04:00
     description: Apache Cassandra is a free and open-source distributed database management
       system designed to handle large amounts of data across many commodity servers,
       providing high availability with no single point of failure.
@@ -22,7 +22,7 @@ entries:
     version: 0.2.1
   grafana:
   - appVersion: 5.0.4
-    created: 2018-04-19T20:19:02.822010897-04:00
+    created: 2018-06-28T17:13:22.734889003-04:00
     description: The leading tool for querying and visualizing time series and metrics.
     digest: 1de7614b2885a1cfc36317a3e0c44e0239d0a3a97cad14357f6865688294301f
     engine: gotpl
@@ -39,7 +39,7 @@ entries:
     urls:
     - https://pgalchemy.github.io/charts/grafana-1.1.1.tgz
     version: 1.1.1
-  - created: 2018-04-19T20:19:02.821497311-04:00
+  - created: 2018-06-28T17:13:22.733759742-04:00
     description: The leading tool for querying and visualizing time series and metrics.
     digest: c404e73e88cd3aa20635b334b9f9df785bb644c80171691ea4bf95502a256686
     engine: gotpl
@@ -57,7 +57,7 @@ entries:
   kong:
   - apiVersion: v1
     appVersion: 0.13.0
-    created: 2018-04-19T20:19:02.829431656-04:00
+    created: 2018-06-28T17:13:22.74598021-04:00
     description: Kong is open-source API Gateway and Microservices Management Layer,
       delivering high performance and reliability.
     digest: d1f2b45e18a2b9eef1112467706f3cb0806428ba30f3d3c6d438a62906ead7f2
@@ -75,7 +75,7 @@ entries:
     version: 0.2.5
   - apiVersion: v1
     appVersion: 0.12.2
-    created: 2018-04-19T20:19:02.828204118-04:00
+    created: 2018-06-28T17:13:22.744144846-04:00
     description: Kong is open-source API Gateway and Microservices Management Layer,
       delivering high performance and reliability.
     digest: 945b17a8b13dbc8a8aeffc67ee6b16ee3cebd257ed430b621a7ba388cdb30042
@@ -93,7 +93,7 @@ entries:
     version: 0.2.1
   - apiVersion: v1
     appVersion: 0.12.2
-    created: 2018-04-19T20:19:02.826965416-04:00
+    created: 2018-06-28T17:13:22.742480442-04:00
     description: Kong is open-source API Gateway and Microservices Management Layer,
       delivering high performance and reliability.
     digest: 5d99575563eb15d62f955c818efcc18e3d1293b7f21d79d7624a1cfb59342718
@@ -111,7 +111,7 @@ entries:
     version: 0.2.0
   - apiVersion: v1
     appVersion: 0.12.1
-    created: 2018-04-19T20:19:02.825778825-04:00
+    created: 2018-06-28T17:13:22.740772153-04:00
     description: Kong is open-source API Gateway and Microservices Management Layer,
       delivering high performance and reliability.
     digest: bb53bf04fb9d83da18290dad317321b6983e8b7f2ffa1ea4a6c7a13e5d08b612
@@ -129,7 +129,7 @@ entries:
     version: 0.1.2
   - apiVersion: v1
     appVersion: 0.12.1
-    created: 2018-04-19T20:19:02.824501041-04:00
+    created: 2018-06-28T17:13:22.739235318-04:00
     description: Kong is open-source API Gateway and Microservices Management Layer,
       delivering high performance and reliability.
     digest: 813293bc1bd4385d7afaad438ca8d9be5bd9f4ae08469cf27ec103185fd68ba6
@@ -147,7 +147,7 @@ entries:
     version: 0.1.1
   - apiVersion: v1
     appVersion: 0.12.1
-    created: 2018-04-19T20:19:02.823252327-04:00
+    created: 2018-06-28T17:13:22.737297923-04:00
     description: Kong is open-source API Gateway and Microservices Management Layer,
       delivering high performance and reliability.
     digest: 97cdd8c445f2a4bea6ff7078ad84b9b26b855fb30be7a4fbe74a71768cb30e4a
@@ -163,10 +163,19 @@ entries:
     urls:
     - https://pgalchemy.github.io/charts/kong-0.1.0.tgz
     version: 0.1.0
+  kong-ingress:
+  - apiVersion: v1
+    created: 2018-06-28T17:13:22.7464803-04:00
+    description: A Helm chart for Kubernetes
+    digest: fdb2a831f963db0f01bf864a2f55d27c2664f4a96d75052e46ac2586a6729f15
+    name: kong-ingress
+    urls:
+    - https://pgalchemy.github.io/charts/kong-ingress-0.1.0.tgz
+    version: 0.1.0
   logstash:
   - apiVersion: v1
     appVersion: 6.2.2
-    created: 2018-04-19T20:19:02.830476332-04:00
+    created: 2018-06-28T17:13:22.747798257-04:00
     description: Logstash is an open source, server-side data processing pipeline
     digest: c234aad70e7cb10db89d161cebffeae9b20022ece507b1fc1390f26fc9bc1b6a
     home: https://www.elastic.co/products/logstash
@@ -186,7 +195,7 @@ entries:
     - https://pgalchemy.github.io/charts/logstash-0.6.2.tgz
     version: 0.6.2
   postgresql:
-  - created: 2018-04-19T20:19:02.831256588-04:00
+  - created: 2018-06-28T17:13:22.749626728-04:00
     description: Object-relational database management system (ORDBMS) with an emphasis
       on extensibility and on standards-compliance.
     digest: 96627fe5441e6ff6d990715aaca5233ba695b042c9f9bf174cbaa86f63efa8e5
@@ -211,7 +220,7 @@ entries:
   vault:
   - apiVersion: v1
     appVersion: 0.9.0
-    created: 2018-04-19T20:19:02.831925634-04:00
+    created: 2018-06-28T17:13:22.750879082-04:00
     description: A Helm chart for Vault, a tool for managing secrets
     digest: 3889e2488e088cc35b4a97ad2f4c92e97756a946cd092009a28188260a027789
     home: https://www.vaultproject.io/
@@ -227,7 +236,7 @@ entries:
     - https://pgalchemy.github.io/charts/vault-0.4.3.tgz
     version: 0.4.3
   zookeeper:
-  - created: 2018-04-19T20:19:02.832358883-04:00
+  - created: 2018-06-28T17:13:22.752522924-04:00
     description: Centralized service for maintaining configuration information, naming,
       providing distributed synchronization, and providing group services.
     digest: a2d540f792a31377b38a12803d7efa9eef4ad7f36feaff58c9ee00d0dadd3952
@@ -245,4 +254,4 @@ entries:
     urls:
     - https://pgalchemy.github.io/charts/zookeeper-0.5.0.tgz
     version: 0.5.0
-generated: 2018-04-19T20:19:02.820405294-04:00
+generated: 2018-06-28T17:13:22.730946083-04:00
