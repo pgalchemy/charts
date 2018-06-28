@@ -1,0 +1,103 @@
+controller:
+  name: controller
+  publishService: kong/kong-proxy
+  defaultBackendService: kong/kong-proxy
+
+  image:
+    repository: kong-docker-kubernetes-ingress-controller.bintray.io/kong-ingress-controller
+    tag: 0.0.4
+    pullPolicy: IfNotPresent
+
+  electionID: ingress-controller-leader
+  ingressClass: nginx
+
+  # labels to add to the pod container metadata
+  podLabels: {}
+  #  key: value
+
+  # The update strategy to apply to the Deployment or DaemonSet
+  ##
+  updateStrategy: {}
+  #  rollingUpdate:
+  #    maxUnavailable: 1
+  #  type: RollingUpdate
+
+  # minReadySeconds to avoid killing pods before we are ready
+  #
+  minReadySeconds: 0
+
+  livenessProbe:
+    failureThreshold: 3
+    httpGet:
+      path: /healthz
+      port: 10254
+      scheme: HTTP
+    initialDelaySeconds: 30
+    periodSeconds: 10
+    successThreshold: 1
+    timeoutSeconds: 1
+
+  readinessProbe:
+    failureThreshold: 3
+    httpGet:
+      path: /healthz
+      port: 10254
+      scheme: HTTP
+    periodSeconds: 10
+    successThreshold: 1
+    timeoutSeconds: 1
+
+kong:
+  name: kong
+
+  # Specify Kong configurations
+  # Kong configurations guide https://getkong.org/docs/latest/configuration/
+  env:
+    database: postgres
+
+  image:
+    repository: kong
+    tag: 0.13.1
+    pullPolicy: IfNotPresent
+
+  service:
+    annotations: {}
+    labels: {}
+    type: NodePort
+    port: 8001
+
+  useTLS: false
+
+  livenessProbe:
+    failureThreshold: 3
+    httpGet:
+      path: /status
+      port: kong-admin
+      scheme: HTTP
+    initialDelaySeconds: 30
+    periodSeconds: 10
+    successThreshold: 1
+    timeoutSeconds: 1
+
+  readinessProbe:
+    failureThreshold: 3
+    httpGet:
+      path: /status
+      port: kong-admin
+      scheme: HTTP
+    periodSeconds: 10
+    successThreshold: 1
+    timeoutSeconds: 1
+
+
+## Rollback limit
+##
+revisionHistoryLimit: 10
+
+## Enable RBAC as per https://github.com/kubernetes/ingress/tree/master/examples/rbac/nginx and https://github.com/kubernetes/ingress/issues/266
+rbac:
+  create: true
+
+serviceAccount:
+  create: true
+  name:

@@ -1,0 +1,97 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  labels:
+    app: {{ template "kong-ingress.name" . }}
+    chart: {{ .Chart.Name }}-{{ .Chart.Version }}
+    component: "{{ .Values.controller.name }}"
+    heritage: {{ .Release.Service }}
+    release: {{ .Release.Name }}
+  name: {{ template "kong-ingress.controller.fullname" . }}
+spec:
+  replicas: {{ .Values.controller.replicaCount }}
+  revisionHistoryLimit: {{ .Values.revisionHistoryLimit }}
+  strategy:
+{{ toYaml .Values.controller.updateStrategy | indent 4 }}
+  minReadySeconds: {{ .Values.controller.minReadySeconds }}
+  template:
+    metadata:
+      {{- if .Values.controller.podAnnotations }}
+      annotations:
+{{ toYaml .Values.controller.podAnnotations | indent 8}}
+      {{- end }}
+      labels:
+        app: {{ template "kong-ingress.name" . }}
+        component: "{{ .Values.controller.name }}"
+        release: {{ .Release.Name }}
+        {{- if .Values.controller.podLabels }}
+{{ toYaml .Values.controller.podLabels | indent 8 }}
+        {{- end }}
+    spec:
+      serviceAccountName: {{ template "kong-ingress.serviceAccountName" . }}
+      {{- if .Values.imagePullSecrets }}
+      imagePullSecrets:
+{{ toYaml .Values.imagePullSecrets | indent 8 }}
+      {{- end }}
+      initContainers:
+        - name: {{ template "kong-ingress.name" . }}-{{ .Values.kong.name }}-migration
+          image: "{{ .Values.kong.image.repository }}:{{ .Values.kong.image.tag }}"
+          imagePullPolicy: "{{ .Values.kong.image.pullPolicy }}"
+          env:
+            {{- range $key, $val := .Values.kong.env }}
+            - name: KONG_{{ $key | upper}}
+              value: {{ $val | quote }}
+            {{- end}}
+          command: [ "/bin/sh", "-c", "kong migrations up" ]
+      containers:
+        - name: {{ template "kong-ingress.name" . }}-{{ .Values.kong.name }}-admin-api
+          image: "{{ .Values.kong.image.repository }}:{{ .Values.kong.image.tag }}"
+          imagePullPolicy: "{{ .Values.kong.image.pullPolicy }}"
+          env:
+            - name: KONG_ADMIN_ACCESS_LOG
+              value: /dev/stdout
+            - name: KONG_ADMIN_ERROR_LOG
+              value: /dev/stderr
+            - name: KONG_ADMIN_LISTEN
+              value: 0.0.0.0:{{ .Values.kong.service.port }}
+            - name: KONG_PROXY_LISTEN
+              value: 'off'
+            {{- range $key, $val := .Values.kong.env }}
+            - name: KONG_{{ $key | upper}}
+              value: {{ $val | quote }}
+            {{- end}}
+          ports:
+          - name: kong-admin
+            containerPort: {{ .Values.kong.service.port }}
+          readinessProbe:
+{{ toYaml .Values.kong.readinessProbe | indent 12 }}
+          livenessProbe:
+{{ toYaml .Values.kong.livenessProbe | indent 12 }}
+        - name: ingress-controller
+          args:
+          - /kong-ingress-controller
+          # the kong URL points to the kong admin api server
+          - --kong-url=http://localhost:{{ .Values.kong.service.port }}
+          # the default service is the kong proxy service
+          - --default-backend-service={{ .Values.controller.defaultBackendService }}
+          # Service from were we extract the IP address/es to use in Ingress status
+          - --publish-service={{ .Values.controller.publishService }}
+          - --election-id={{ .Values.controller.electionID }}
+          - --ingress-class={{ .Values.controller.ingressClass }}
+          env:
+          - name: POD_NAME
+            valueFrom:
+              fieldRef:
+                apiVersion: v1
+                fieldPath: metadata.name
+          - name: POD_NAMESPACE
+            valueFrom:
+              fieldRef:
+                apiVersion: v1
+                fieldPath: metadata.namespace
+          image: "{{ .Values.controller.image.repository }}:{{ .Values.controller.image.tag }}"
+          imagePullPolicy: "{{ .Values.controller.image.pullPolicy }}"
+          readinessProbe:
+{{ toYaml .Values.controller.readinessProbe | indent 12 }}
+          livenessProbe:
+{{ toYaml .Values.controller.livenessProbe | indent 12 }}
